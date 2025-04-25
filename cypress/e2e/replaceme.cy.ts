@@ -43,6 +43,13 @@ describe('Inner Routes', () => {
     cy.get('h1').contains('Create a GOV.UK One Login or sign in')
   })
 
+  it('directs missing routes to human readable 404 page', () => {
+    cy.visit(`${Cypress.env('BASE_URL')}unset-route`, {
+      failOnStatusCode: false,
+    })
+    cy.get('h1').contains('This page cannot be found')
+  })
+
   it('should access the Inner Index page', () => {
     cy.visit(`${Cypress.env('BASE_URL')}inner?bypass=true`)
     cy.get('h1').contains('Welcome, Joe')
