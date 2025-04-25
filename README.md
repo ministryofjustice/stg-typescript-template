@@ -54,12 +54,18 @@ docker compose down
 
 - Cloud platform [guide](https://user-guide.cloud-platform.service.justice.gov.uk/#getting-started) has a great getting started section
 - Cloud platform namespaces [stg example](https://github.com/ministryofjustice/cloud-platform-environments/pull/30165/files)
-- [ask-cloud-platform](https://moj.enterprise.slack.com/archives/C57UPMZLY) slack channel (where PRs must be posted to environments)
-- [cloud-platform-update](https://moj.enterprise.slack.com/archives/CH6D099DF) slack channel
+- [ask-cloud-platform](https://moj.enterprise.slack.com/archives/C57UPMZLY) Justice Digital slack channel (where PRs must be posted to environments)
+- [cloud-platform-update](https://moj.enterprise.slack.com/archives/CH6D099DF) Justice Digital slack channel
+- [solution surgery](https://mojdt.slack.com/archives/C07Q7BEUVKK/p1745423915469119) Informal group of Technical Architects across Justice Digital and best place to bring ideas for discussion, and to meet the tech community with a vested interest. Start these conversations as early as you can!
 
 ## Customising for your own service
 
 Some scripts and configurations need you to reflect your own service name or suitable value. Search for `REPLACE-ME` (**case insensitively**) to find where you need to do that
+
+Set the following Repository secrets
+
+- POC_PASSWORD
+- VALID_OTP e.g. 456123
 
 ## Git hook scripts
 
