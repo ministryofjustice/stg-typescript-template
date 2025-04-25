@@ -2,23 +2,32 @@
 
 A bootstrap template to create typescript clickable prototypes with deployment scripts to enable deployment on Cloud Platform hosting
 
-## Useful links
-
-- Cloud platform [guide](https://user-guide.cloud-platform.service.justice.gov.uk/#getting-started) has a great getting started section
-- Cloud platform namespaces [stg example](https://github.com/ministryofjustice/cloud-platform-environments/pull/30165/files)
-- [ask-cloud-platform](https://moj.enterprise.slack.com/archives/C57UPMZLY) slack channel (where PRs must be posted to environments)
-- [cloud-platform-update](https://moj.enterprise.slack.com/archives/CH6D099DF) slack channel
-
 ## Why this isn't the HMPPS template
 
-The template provided by HMPPS contains a specific helm chart and is part of an automated bootsstrap process only suitable for services supported and montiroed by HMPPS engineering teams. It expects redis and hmpps-auth integration which is not always appropriate.
+The template provided by HMPPS contains a specific helm chart and is part of an automated bootsstrap process only suitable for services supported and monitored by HMPPS engineering teams. It expects a custom domain name, redis and hmpps-auth integration which is not always appropriate.
 This template is inspired by the HMPPS template though and is intended to be easily migratable.
 
-## Customising for your own service
+## What this should NOT be used for
 
-Some scripts and configurations need you to reflect your own service name or suitable value. Search for `REPLACE-ME` (**case insensitively**) to find where you need to do that
+Any site to be integrated with internal data sources, this won't have the monitoring or network access for internal integrations and is not maintainable for use after a prototyping phase.
 
-## running this locally
+There are some url parameter driven behaviour to make the prototype journey work with minimal data and session which would never be appropriate for an integrated service.
+
+## What you get out of the box
+
+- password protection for the site to avoid unauthorised public usage
+- one login mock journey for citizen authentication
+- website session
+- csrf and content security policies
+- file upload, location check, camera and video capture javascript capabilities (wire up in your own custom controllers to use)
+- basic unit tests
+- basic cypress tests
+- docker configuration
+- kubernetes resource templates
+- cloud platform deployment scripts
+- next steps task list easter egg (run the site to find it)
+
+## Running this locally
 
 expected environment variables see .env.example file
 
@@ -41,10 +50,21 @@ npm run cypress:run
 docker compose down
 ```
 
-## git hook scripts
+## Useful links
+
+- Cloud platform [guide](https://user-guide.cloud-platform.service.justice.gov.uk/#getting-started) has a great getting started section
+- Cloud platform namespaces [stg example](https://github.com/ministryofjustice/cloud-platform-environments/pull/30165/files)
+- [ask-cloud-platform](https://moj.enterprise.slack.com/archives/C57UPMZLY) slack channel (where PRs must be posted to environments)
+- [cloud-platform-update](https://moj.enterprise.slack.com/archives/CH6D099DF) slack channel
+
+## Customising for your own service
+
+Some scripts and configurations need you to reflect your own service name or suitable value. Search for `REPLACE-ME` (**case insensitively**) to find where you need to do that
+
+## Git hook scripts
 
 `precommit` will run lint, typescript compile and an npm audit check for earliest sight of security vulnerabilities
 
-## optional extras
+## Optional extras
 
 [Feature flags middleware](./server/middleware/featureFlags.ts) is available but not enabled. For initial prototyping this may not be necessary but could be useful in a pilot.
