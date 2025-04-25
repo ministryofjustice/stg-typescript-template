@@ -1,6 +1,6 @@
 # stg-typescript-template
 
-A bootstrap template to create typescript clickable prototypes with deployment scripts to enable deployment on Cloud Platform hosting
+A bootstrap template to create typescript clickable prototypes with github action workflows to enable deployment on Cloud Platform hosting
 
 ## Why this isn't the HMPPS template
 
