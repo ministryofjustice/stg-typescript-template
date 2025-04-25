@@ -1,0 +1,26 @@
+{
+  "extends": "@tsconfig/node22/tsconfig.json",
+  "compileOnSave": true,
+  "compilerOptions": {
+    "outDir": "./dist",
+    "sourceMap": true,
+    "noEmit": false,
+    "allowJs": false,
+    "strict": false,
+    "resolveJsonModule": true,
+    "allowSyntheticDefaultImports": true,
+    "noImplicitAny": true,
+    "experimentalDecorators": true,
+    "typeRoots": ["./server/@types", "./node_modules/@types"]
+  },
+  "exclude": [
+    "node_modules",
+    "assets/**/*.js",
+    "dist",
+    "esbuild",
+    "eslint.config.mjs",
+    "cypress/**/*.ts",
+    "server/**/*.test.ts"
+  ],
+  "include": ["**/*.js", "**/*.ts"]
+}

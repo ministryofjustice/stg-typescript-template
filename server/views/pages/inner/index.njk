@@ -1,0 +1,81 @@
+{%- from "moj/components/alert/macro.njk" import mojAlert -%}
+{% from "govuk/components/checkboxes/macro.njk" import govukCheckboxes %}
+{%- from "govuk/components/button/macro.njk" import govukButton %}
+
+{% extends "../../layouts/layout.njk" %}
+
+{% set pageTitle = applicationName + " - Home" %}
+{% set mainClasses = "app-container govuk-body" %}
+
+{% set taskItems = [] %}
+{% if tasks %}
+{% for task in tasks %}
+    {%- set item = [
+        { value: task.code, text: task.description }
+    ] -%}
+    {{ taskItems.push(item) }}
+{% endfor %}
+{% endif %}
+
+{% block content %}
+
+<h1 class="govuk-heading-l">Welcome, Joe</h1>
+
+{% if (scenario == "pending") %}
+{{ mojAlert({
+  variant: "warning",
+  title: "Account pending verification",
+  showTitleAsHeading: true,
+  dismissible: false,
+  html: 'Your account has been created and will be verified after your next face-to-face appointment.
+  <br /> Once your account is activated you will be able to acccess the tasks below.'
+}) }}
+{% endif %}
+
+{% if (scenario == "verified") %}
+
+{{ mojAlert({
+  variant: "success",
+  title: "Account verified",
+  showTitleAsHeading: true,
+  dismissible: true,
+  html: 'Your account has been verified'
+}) }}
+{% endif %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-full">
+    <h2 class="govuk-heading-s">Your tasks</h2>
+      {% if (scenario == "pending") %}
+        <p>Your tasks will be selectable once your account has been activated</p>
+        {% include './partials/taskList.njk' %}
+      {% elif (scenario == "chosen" and chosenTasks) %}
+        {% set tasks = chosenTasks %}
+        <p>Your chosen tasks are</p>
+        {% include './partials/taskList.njk' %}
+      {% else %}
+        <form class="form" action="/inner" method="post">
+        {{ govukCheckboxes({
+          name: "tasks",
+          fieldset: {
+            legend: {
+              text: "What would you like to do next?",
+              classes: "govuk-fieldset__legend--l"
+            }
+          },
+          hint: {
+            text: "Select all that apply"
+          },
+          items: taskItems
+        }) }}
+        
+        {{ govukButton({
+                text: "Continue",
+                type: "submit"
+              }) }}
+        </form>
+      {% endif %}
+  </div>
+</div>
+
+{% endblock %}

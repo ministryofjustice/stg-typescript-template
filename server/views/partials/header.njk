@@ -1,0 +1,29 @@
+{%- from "moj/components/header/macro.njk" import mojHeader -%}
+
+{{ mojHeader({
+  organisationLabel: {
+    text: "",
+    href: "/"
+  },
+  serviceLabel: {
+    text: applicationName,
+    href: "/"
+  },
+  navigation: {
+    label: "Account navigation",
+    items: [
+      {
+        text: "Cymraeg",
+        href: "#"
+      },
+      {
+        text: "|",
+        isDisabled: true
+      },
+      {
+        text: "Sign out",
+        href: "/sign-out"
+      }
+    ]
+  }
+}) }}

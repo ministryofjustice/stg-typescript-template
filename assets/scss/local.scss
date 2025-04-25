@@ -1,0 +1,92 @@
+.govuk-main-wrapper {
+  min-height: 800px;
+}
+.app-auth-container{
+  min-height: 100px;
+}
+
+h3 {
+  font-weight: bold !important;
+}
+
+h4 {
+  font-weight: bold !important;
+}
+
+.total-hours {
+  border: 1px $govuk-border-colour solid;
+  background-color: govuk-colour("mid-grey");
+  @include govuk-responsive-margin(5,'bottom');
+  @include govuk-responsive-margin(2,'top');
+}
+
+.completed-hours {
+  background-color: $govuk-success-colour;
+  height: 0.5em;
+}
+
+// override in one place using mixins to reduce repeated classes in njks
+.appointment-summary p, .appointment-summary h4 {
+  @include govuk-responsive-margin(0);
+  @include govuk-responsive-padding(0);
+  @include govuk-responsive-padding(1,'bottom');
+}
+
+.appointment-description {
+  @include govuk-responsive-margin(0);
+  @include govuk-responsive-margin(4,'bottom');
+  @include govuk-responsive-margin(3,'top');
+  @include govuk-responsive-padding(0);
+  @include govuk-responsive-padding(1,'bottom');
+}
+
+.appointment-summary, .message-summary {
+  @include govuk-responsive-padding(4);
+  @include govuk-responsive-margin(6,'bottom');
+}
+
+.message-summary h3 {
+  @include govuk-responsive-margin(0);
+  @include govuk-responsive-padding(0);
+  @include govuk-responsive-padding(1,'bottom');
+}
+
+.govuk-box--rounded {
+  border: 1px $govuk-border-colour solid;
+  border-radius: 5px;
+}
+
+.subhead {
+  color:  $govuk-secondary-text-colour;
+}
+
+.profile {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.profile .prefix {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  margin-right: 20px;
+  background-color: #dcdcdc;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+}
+
+ul.navigation-list li a{
+  background-color: white;
+  border: 1px solid $govuk-border-colour;
+  padding: 25px;
+  border-radius: 3px;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  position: relative;
+}
+

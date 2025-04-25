@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: ui-config
+data:
+  POC_PASSWORD: "${POC_PASSWORD}"
+  VALID_OTP: "${VALID_OTP}"
+  POP_PASSWORD: "${POC_PASSWORD}"
+  POP_LOGIN_OTP: "${VALID_OTP}"
+  PRODUCT_ID: "UNASSIGNED"
+  REDIS_ENABLED: "false"
+  REDIS_HOST: "unused"
+  SESSION_SECRET: "unused"
+  INGRESS_URL: "https://${NAMESPACE}.apps.live.cloud-platform.service.justice.gov.uk"

@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: stg-REPLACE-ME-deployment
+  labels:
+    app: stg-REPLACE-ME
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: stg-REPLACE-ME # this should match the selector in service.yml
+  template:
+    metadata:
+      labels:
+        app: stg-REPLACE-ME # this should match the selector in service.yml
+    spec:
+      containers:
+        - name: stg-REPLACE-ME
+          image: ${REGISTRY}/${REPOSITORY}:${IMAGE_TAG}
+          ports:
+            - containerPort: 3000
+          # initial poc environment variables while auth functionality is not active
+          envFrom:
+          - configMapRef:
+              name: ui-config
