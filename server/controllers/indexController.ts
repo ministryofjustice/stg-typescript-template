@@ -28,13 +28,11 @@ export const handleSelectedTasks = (dataService = getDataService()): RequestHand
     try {
       const scenario = 'chosen'
       const tasks = await dataService.getTasks(req.session.user_id)
-      const input = req.body
+      const input = req.body.tasks
       logger.info(input)
       const chosenTasks: Array<Task> = []
-      tasks.forEach(task => {
-        if (task.code in input) {
-          chosenTasks.push(task)
-        }
+      input.forEach((chosen: string) => {
+        chosenTasks.push(tasks.find(({ code }) => code === chosen))
       })
       res.render('pages/inner/index', { scenario, chosenTasks })
     } catch (error) {

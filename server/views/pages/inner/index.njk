@@ -10,9 +10,7 @@
 {% set taskItems = [] %}
 {% if tasks %}
 {% for task in tasks %}
-    {%- set item = [
-        { value: task.code, text: task.description }
-    ] -%}
+    {%- set item = { value: task.code, text: task.description } -%}
     {{ taskItems.push(item) }}
 {% endfor %}
 {% endif %}
@@ -45,22 +43,24 @@
 
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-full">
-    <h2 class="govuk-heading-s">Your tasks</h2>
       {% if (scenario == "pending") %}
+      <h2 class="govuk-heading-s">Your tasks</h2>
         <p>Your tasks will be selectable once your account has been activated</p>
         {% include './partials/taskList.njk' %}
       {% elif (scenario == "chosen" and chosenTasks) %}
         {% set tasks = chosenTasks %}
+        <h2 class="govuk-heading-s">Your tasks</h2>
         <p>Your chosen tasks are</p>
         {% include './partials/taskList.njk' %}
       {% else %}
         <form class="form" action="/inner" method="post">
+        <input type="hidden" name="_csrf" value="{{ csrfToken }}">
         {{ govukCheckboxes({
           name: "tasks",
           fieldset: {
             legend: {
               text: "What would you like to do next?",
-              classes: "govuk-fieldset__legend--l"
+              classes: "govuk-fieldset__legend--s"
             }
           },
           hint: {
